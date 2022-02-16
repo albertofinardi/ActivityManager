@@ -2,6 +2,7 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
+    "analytics": "70dd6185-0d6f-4821-b502-82bb06d4c593",
     "packageManager": "npm"
   },
   "newProjectRoot": "projects",
@@ -30,7 +31,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "src/assets/font.css",
+              "src/assets/sb-admin-2.min.css"            
             ],
             "scripts": []
           },
