@@ -43,72 +43,94 @@
   </div>
 </div>
 -->
-<body style="display: flex">
-  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" [ngClass]="isCollapsed ? 'toggled' : ''">
-    <!-- Sidebar - Brand -->
-    <div class="sidebar-brand d-flex align-items-center justify-content-center">
-      <div class="sidebar-brand-icon">
-        <i class="bi bi-activity"></i>
+<body>
+  <div style="display: flex">
+    <ul
+      class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+      [ngClass]="isCollapsed ? 'toggled' : ''"
+    >
+      <!-- Sidebar - Brand -->
+      <div
+        class="sidebar-brand d-flex align-items-center justify-content-center"
+      >
+        <div class="sidebar-brand-icon">
+          <i class="bi bi-activity"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Activity<sup> Manager</sup></div>
       </div>
-      <div class="sidebar-brand-text mx-3">Activity<sup> Manager</sup></div>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0" />
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['./dashboard']">
+          <i class="bi bi-speedometer2 fs-5 mr-2 align-middle"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider" />
+
+      <!-- Heading -->
+      <div class="sidebar-heading">Gestione attività</div>
+
+      <!-- Nuova -->
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['./nuova']">
+          <i class="bi bi-plus-circle-fill fs-5 mr-2 align-middle"></i>
+          <span>Nuova</span></a
+        >
+      </li>
+
+      <!-- Modifica -->
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['./modifica']">
+          <i class="bi bi-pencil-square fs-5 mr-2 align-middle"></i>
+          <span>Modifica</span></a
+        >
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0" />
+
+      <!-- Impostazioni -->
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['./impostazioni']">
+          <i class="bi bi-gear-fill fs-5 mr-2 align-middle"></i>
+          <span>Impostazioni</span></a
+        >
+      </li>
+
+      <!-- Segnala -->
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['./segnala']">
+          <i class="bi bi-exclamation-triangle fs-5 mr-2 align-middle"></i
+          ><span>Segnala</span></a
+        >
+      </li>
+      <hr class="sidebar-divider d-none d-md-block" />
+      <div class="text-center d-none d-md-inline">
+        <button
+          class="btn bg-gray-100 rounded-circle border-0"
+          (click)="isCollapsed = !isCollapsed"
+        >
+          <i *ngIf="isCollapsed" class="bi bi-chevron-right"></i
+          ><i *ngIf="!isCollapsed" class="bi bi-chevron-left"></i>
+        </button>
+      </div>
+    </ul>
+
+    <div class="d-flex flex-column" style="width: 100%">
+      <div style="flex: 1 0 auto">
+        <!-- Begin Page Content -->
+        <div class="container-fluid mt-4">
+          <!-- Page Heading -->
+          <router-outlet></router-outlet>
+        </div>
+        <!-- /.container-fluid -->
+      </div>
     </div>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0" />
-
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" [routerLink]="['./dashboard']">
-        <i class="bi bi-speedometer2 fs-5 mr-2 align-middle"></i>
-        <span>Dashboard</span>
-      </a>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider" />
-
-    <!-- Heading -->
-    <div class="sidebar-heading">Gestione attività</div>
-
-    <!-- Nuova -->
-    <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" [routerLink]="['./nuova']">
-        <i class="bi bi-plus-circle-fill fs-5 mr-2 align-middle"></i>
-        <span>Nuova</span></a
-      >
-    </li>
-
-    <!-- Modifica -->
-    <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" [routerLink]="['./modifica']">
-        <i class="bi bi-speedometer2 fs-5 mr-2 align-middle"></i>
-        <span>Modifica</span></a
-      >
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0" />
-
-    <!-- Impostazioni -->
-    <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" [routerLink]="['./impostazioni']">
-        <i class="bi bi-gear-fill fs-5 mr-2 align-middle"></i>
-        <span>Impostazioni</span></a
-      >
-    </li>
-
-    <!-- Segnala -->
-    <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" [routerLink]="['./segnala']">
-        <i class="bi bi-exclamation-triangle fs-5 mr-2 align-middle"></i
-        ><span>Segnala</span></a
-      >
-    </li>
-    <hr class="sidebar-divider d-none d-md-block">
-    <div class="text-center d-none d-md-inline">
-      <button class="btn bg-gray-100 rounded-circle border-0" (click)="isCollapsed = !isCollapsed"><i *ngIf="isCollapsed" class="bi bi-chevron-right"></i><i *ngIf="!isCollapsed" class="bi bi-chevron-left"></i></button>
   </div>
-  </ul>
-
-  <router-outlet class="d-flex flex-column"></router-outlet>
 </body>

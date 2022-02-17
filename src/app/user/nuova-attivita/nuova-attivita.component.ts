@@ -11,9 +11,6 @@ import localeIt from '@angular/common/locales/it';
 })
 export class NuovaAttivitaComponent implements OnInit {
 
-  public nuovaCollapse = true;
-  public modificaCollapse = false;
-
   eventi : Attivita[] = [];
 
   nuovaAttivitaData = new FormGroup({

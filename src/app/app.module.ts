@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NuovaAttivitaComponent } from './user/nuova-attivita/nuova-attivita.component';
 import { ImpostazioniComponent } from './user/impostazioni/impostazioni.component';
+import { SegnalaComponent } from './user/segnala/segnala.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ImpostazioniComponent } from './user/impostazioni/impostazioni.componen
     DashboardComponent,
     InterfaceComponent,
     NuovaAttivitaComponent,
-    ImpostazioniComponent
+    ImpostazioniComponent,
+    SegnalaComponent
   ],
   imports: [
     BrowserModule,
