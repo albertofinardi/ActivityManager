@@ -144,7 +144,7 @@
       <label for="inputInizio">Inizio</label>
       <input
         formControlName="inizio"
-        type="time"
+        type="datetime-local"
         class="form-control"
         id="inputInizio"
       />
@@ -172,8 +172,8 @@
   </div>
   <button
     type="submit"
-    class="btn btn-primary"
-    [disabled]="!nuovaAttivitaData.valid || controllaOra()"
+    class="btn btn-primary mb-4"
+    [disabled]="!nuovaAttivitaData.valid || !oraValida()"
   >
     Conferma
   </button>

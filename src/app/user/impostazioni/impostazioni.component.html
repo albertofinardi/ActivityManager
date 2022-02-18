@@ -1,7 +1,52 @@
 <h3 class="mb-4">Impostazioni</h3>
 
-<p>Attività per pagina</p>
-<p>Anticipo</p>
-<p>Tempo permanenza per pagina (velocità carousel)</p>
-<p>Tempo post fine</p>
-<p>Banda verde se attività in corso (checkbox)</p>
+<form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+    <div class="row mb-3">
+        <label for="tempoPerPagina" class="form-label">Tempo per pagina (1 - 30 secondi)</label>
+        <div class="col">
+          <input
+            type="range"
+            class="form-range"
+            min="1"
+            max="30"
+            step="1"
+            id="tempoPerPagina"
+            formControlName="tempoPerPagina"
+          />
+        </div>
+      </div>
+
+    <div class="row mb-3">
+      <label for="inputDaysSpan" class="form-label">Attivita per pagina (1 - 6)</label>
+      <div class="col">
+        <input
+          type="range"
+          class="form-range"
+          min="1"
+          max="6"
+          step="1"
+          id="inputDaysSpan"
+          formControlName="attivitaPerPagina"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="anticipo" class="col-sm-4 col-form-label"
+          >Anticipo visualizzazione (minuti)</label
+        >
+        <div class="col-sm-8">
+          <input
+            type="number"
+            min="0"
+            class="form-control"
+            id="anticipo"
+            formControlName="anticipo"
+            placeholder="Minuti di anticipo"
+          />
+        </div>
+      </div>
+    
+    <button type="submit" class="btn btn-primary mb-4" style="margin-right: 1rem;" [disabled]="!settingsForm.valid" >Salva</button>
+
+  </form>

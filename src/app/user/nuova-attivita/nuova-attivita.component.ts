@@ -1,8 +1,9 @@
 import { registerLocaleData } from '@angular/common';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Attivita } from 'src/app/utility/attivita';
+import { Attivita, rawToAttivita } from 'src/app/utility/attivita';
 import localeIt from '@angular/common/locales/it';
+import { emit } from '@tauri-apps/api/event';
 
 @Component({
   selector: 'app-nuova-attivita',
@@ -19,8 +20,8 @@ export class NuovaAttivitaComponent implements OnInit {
     note: new FormControl(''),
     aula: new FormControl('', Validators.required),
     piano: new FormControl('', Validators.required),
-    inizio: new FormControl({}, Validators.required),
-    fine: new FormControl({}, Validators.required),
+    inizio: new FormControl('', Validators.required),
+    fine: new FormControl('', Validators.required),
   })
 
   constructor() {
@@ -31,20 +32,24 @@ export class NuovaAttivitaComponent implements OnInit {
     //this.readData()
   }
 
-  submit() {
-    this.eventi.push(this.nuovaAttivitaData.getRawValue())
-    console.log(this.eventi)
+  async submit() {
+    var inizio = new Date(this.nuovaAttivitaData.controls['inizio'].value);
+    var fine = new Date(inizio.toDateString() + ' ' + this.nuovaAttivitaData.controls['fine'].value);
+    this.nuovaAttivitaData.controls['fine'].setValue(fine);
+    const payload = rawToAttivita(this.nuovaAttivitaData.getRawValue())
+    console.log(payload)
+    try {
+      await emit('nuova-attivita-submit', payload)
+      console.log('Fatto')
+    }catch(err){
+      console.log(err)
+    }
   }
 
-  controllaOra() {
-    var hInizio = this.nuovaAttivitaData.controls['inizio'].value?.hour;
-    var hFine = this.nuovaAttivitaData.controls['fine'].value?.hour;
-    var mInizio = this.nuovaAttivitaData.controls['inizio'].value?.minute;
-    var mFine = this.nuovaAttivitaData.controls['fine'].value?.minute;
-    if (hInizio && hFine && mInizio && mFine)
-      return hInizio > hFine || (hInizio == hFine && mInizio >= mFine)
-    else
-      return true
+  oraValida() {
+    var inizio = new Date(this.nuovaAttivitaData.controls['inizio'].value);
+    var fine = new Date(inizio.toDateString() + ' ' + this.nuovaAttivitaData.controls['fine'].value);
+    return inizio < fine && inizio >= new Date();
   }
   
 /*

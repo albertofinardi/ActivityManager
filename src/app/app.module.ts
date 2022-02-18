@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NuovaAttivitaComponent } from './user/nuova-attivita/nuova-attivita.component';
 import { ImpostazioniComponent } from './user/impostazioni/impostazioni.component';
 import { SegnalaComponent } from './user/segnala/segnala.component';
+import { ModificaAttivitaComponent } from './user/modifica-attivita/modifica-attivita.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SegnalaComponent } from './user/segnala/segnala.component';
     InterfaceComponent,
     NuovaAttivitaComponent,
     ImpostazioniComponent,
-    SegnalaComponent
+    SegnalaComponent,
+    ModificaAttivitaComponent
   ],
   imports: [
     BrowserModule,

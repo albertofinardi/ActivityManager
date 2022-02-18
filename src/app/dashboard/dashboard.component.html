@@ -24,7 +24,7 @@
     <section style="height: 70vh;" class="mt-4 mb-4 d-flex align-items-center justify-content-center">
       <ngb-carousel *ngIf="eventi && eventi.length != 0" class="col-12" style="height: 70vh;">  
         <ng-template ngbSlide *ngFor="let cards of eventi">  
-          <div class="card border-left-primary shadow py-2 mb-3" style="background-color: black;" *ngFor="let attivita of cards">
+          <div class="card shadow py-2 mb-3" style="background-color: black;" *ngFor="let attivita of cards" [ngClass]="attivitaInCorso(attivita) ? 'border-left-success' : 'border-left-primary'">
             <div class="card-body">
               <div class="row no-gutters align-items-center  text-white">
                 <div class="col-6 h3 mb-0 font-weight-bold">{{attivita.nome}}</div>

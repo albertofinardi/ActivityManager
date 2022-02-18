@@ -1,0 +1,83 @@
+<h3 class="mb-4">Modifica attività</h3>
+<div class="table-responsive">
+    <div
+      id="dataTable_wrapper"
+      class="dataTables_wrapper dt-bootstrap4"
+    >
+      <div class="col-sm-12">
+        <table
+          class="table table-bordered dataTable"
+          id="dataTable"
+          width="100%"
+          cellspacing="0"
+          role="grid"
+          aria-describedby="dataTable_info"
+          style="width: 100%"
+        >
+          <thead>
+            <tr role="row">
+              <th
+                class="sorting sorting_asc"
+                tabindex="0"
+                rowspan="1"
+                colspan="1"
+              >
+                Nome
+              </th>
+              <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                Descrizione - note (non visibili)
+              </th>
+              <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                Aula
+              </th>
+              <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                Piano
+              </th>
+              <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                Inizio
+              </th>
+              <th class="sorting" tabindex="0" rowspan="1" colspan="1">
+                Fine
+              </th>
+              <th
+                class="sorting"
+                tabindex="0"
+                rowspan="1"
+                colspan="1"
+              ></th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let attivita of eventi">
+            <tr>
+              <td rowspan="2" class="text-dark">{{ attivita.nome }}</td>
+              <td class="text-dark">{{ attivita.descrizione }}</td>
+              <td rowspan="2" class="text-dark">{{ attivita.aula }}</td>
+              <td rowspan="2" class="text-dark">
+                {{ attivita.piano }}
+              </td>
+              <td rowspan="2" class="text-dark">
+                {{ attivita.inizio | date: "HH:mm" }}
+              </td>
+              <td rowspan="2" class="text-dark">
+                {{ attivita.fine | date: "HH:mm" }}
+              </td>
+              <td rowspan="2" class="text-dark">
+                <button
+                  class="btn btn-sm btn-outline-primary m-1"
+                >
+                  <i class="bi-pencil-fill"></i></button
+                ><button class="btn btn-sm btn-outline-danger m-1">
+                  <i class="bi-trash-fill"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <i>{{ attivita.note }}</i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

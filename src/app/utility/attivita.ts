@@ -16,4 +16,19 @@ export class Attivita {
       this.fine = _fine;
       this.note = _note;
     }
-  }
+}
+export function rawToAttivita(obj: any){
+  return new Attivita (obj.nome, obj.descrizione, obj.aula, obj.piano, obj.inizio,obj.fine, obj.note);
+}
+
+export function sortAttivita(array : Attivita[]){
+  return array.sort(function(a:Attivita, b:Attivita){
+    if(a.inizio < b.inizio){
+      return -1;
+    }
+    if(a.inizio > b.inizio){
+      return 1;
+    }
+    return a.nome.toLowerCase().localeCompare(b.nome.toLowerCase())
+  })
+}

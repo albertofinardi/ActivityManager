@@ -2,7 +2,8 @@ import { registerLocaleData } from '@angular/common';
 import { Component } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import localeIt from '@angular/common/locales/it';
-import { Attivita } from '../utility/attivita';
+import { Attivita, rawToAttivita } from '../utility/attivita';
+import { listen } from '@tauri-apps/api/event';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,8 +18,13 @@ export class DashboardComponent {
   
   constructor(config: NgbCarouselConfig) {
 
+    listen("nuova-attivita-submit", event => {
+      const nuovaAttivita = rawToAttivita(JSON.parse(event.payload as string))
+      console.log(nuovaAttivita)
+    })
+
     //this.writeData()
-    var eventiLocale : Attivita[] | undefined = [new Attivita("Prova1", "prova", "56", "1 piano", new Date(Date.now() + 29 * 60000), new Date(Date.now() + 10 * 60000), 'Boh'),new Attivita("Prova2", "prova", "56", "1 piano", new Date(Date.now() + 29 * 60000), new Date(Date.now() + 10 * 60000), 'Boh'),new Attivita("Prova3", "prova", "56", "1 piano", new Date(Date.now() + 29 * 60000), new Date(Date.now() + 10 * 60000), 'Boh'),new Attivita("Prova4", "prova", "56", "1 piano", new Date(Date.now() + 29 * 60000), new Date(Date.now() + 10 * 60000), 'Boh'),new Attivita("Prova5", "prova", "56", "1 piano", new Date(Date.now() + 29 * 60000), new Date(Date.now() + 10 * 60000), 'Boh'),new Attivita("Prova6", "prova", "56", "1 piano", new Date(Date.now() + 29 * 60000), new Date(Date.now() + 10 * 60000), 'Boh'),new Attivita("Prova7", "prova", "56", "1 piano", new Date(Date.now() + 29 * 60000), new Date(Date.now() + 10 * 60000), 'Boh'),new Attivita("Prova8", "prova", "56", "1 piano", new Date(Date.now() + 29 * 60000), new Date(Date.now() + 10 * 60000), 'Boh')] 
+    var eventiLocale : Attivita[] | undefined = [new Attivita("Prova1", "prova", "56", "1 piano", new Date(Date.now() - 29 * 60000), new Date(Date.now() + 10 * 60000), 'Boh'),new Attivita("Prova2", "prova", "56", "1 piano", new Date(Date.now() + 29 * 60000), new Date(Date.now() + 10 * 60000), 'Boh'),new Attivita("Prova3", "prova", "56", "1 piano", new Date(Date.now() + 29 * 60000), new Date(Date.now() + 10 * 60000), 'Boh'),new Attivita("Prova4", "prova", "56", "1 piano", new Date(Date.now() + 29 * 60000), new Date(Date.now() + 10 * 60000), 'Boh'),new Attivita("Prova5", "prova", "56", "1 piano", new Date(Date.now() + 29 * 60000), new Date(Date.now() + 10 * 60000), 'Boh'),new Attivita("Prova6", "prova", "56", "1 piano", new Date(Date.now() + 29 * 60000), new Date(Date.now() + 10 * 60000), 'Boh'),new Attivita("Prova7", "prova", "56", "1 piano", new Date(Date.now() + 29 * 60000), new Date(Date.now() + 10 * 60000), 'Boh'),new Attivita("Prova8", "prova", "56", "1 piano", new Date(Date.now() + 29 * 60000), new Date(Date.now() + 10 * 60000), 'Boh')] 
 
     config.interval = 5000;
     config.showNavigationArrows = false;
@@ -31,6 +37,10 @@ export class DashboardComponent {
     setInterval(() => {
       this.date = new Date();
     }, 1000);
+  }
+
+  attivitaInCorso(attivita: Attivita){
+    return attivita.inizio <= new Date() && attivita.fine >= new Date()
   }
 
   readData(settings: any, eventiLoc: Attivita[] | undefined) {
