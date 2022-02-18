@@ -32,10 +32,10 @@
     </div>
 
     <div class="row mb-3">
-        <label for="anticipo" class="col-sm-4 col-form-label"
+        <label for="anticipo" class="col-sm-3 col-form-label"
           >Anticipo visualizzazione (minuti)</label
         >
-        <div class="col-sm-8">
+        <div class="col-sm-9">
           <input
             type="number"
             min="0"
@@ -44,6 +44,40 @@
             formControlName="anticipo"
             placeholder="Minuti di anticipo"
           />
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="aule" class="col-sm-3 col-form-label"
+          >Aule</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            id="aule"
+            formControlName="aule"
+            placeholder="Lista aule (separate da virgola)"
+            aria-describedby="auleHelp"
+          />
+          <small id="auleHelp" class="form-text text-muted">Separa le aule con una virgola (,)</small>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="piani" class="col-sm-3 col-form-label"
+          >Piani</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            id="piani"
+            formControlName="piani"
+            placeholder="Lista piani (separati da virgola)"
+            aria-describedby="pianiHelp"
+          />
+          <small id="pianiHelp" class="form-text text-muted">Separa i piani con una virgola (,)</small>
         </div>
       </div>
     

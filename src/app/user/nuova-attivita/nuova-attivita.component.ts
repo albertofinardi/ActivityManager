@@ -1,9 +1,12 @@
 import { registerLocaleData } from '@angular/common';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Attivita, rawToAttivita } from 'src/app/utility/attivita';
+import { Attivita} from 'src/app/utility/attivita';
 import localeIt from '@angular/common/locales/it';
-import { emit } from '@tauri-apps/api/event';
+import { emit, listen } from '@tauri-apps/api/event';
+import { Store } from 'tauri-plugin-store-api';
+import { environment } from 'src/environments/environment';
+import { Settings } from 'src/app/utility/settings';
 
 @Component({
   selector: 'app-nuova-attivita',
@@ -13,6 +16,7 @@ import { emit } from '@tauri-apps/api/event';
 export class NuovaAttivitaComponent implements OnInit {
 
   eventi : Attivita[] = [];
+  settings : Settings = Settings.default();
 
   nuovaAttivitaData = new FormGroup({
     nome: new FormControl('', Validators.required),
@@ -26,19 +30,44 @@ export class NuovaAttivitaComponent implements OnInit {
 
   constructor() {
     registerLocaleData(localeIt, 'it-IT')
+    this.initSettings();
+    listen("settings-submit", event => {
+      window.location.reload()
+    })
   }
 
   ngOnInit(): void {
     //this.readData()
   }
 
+
+
+  async initSettings(){
+    const db = new Store(environment.settings.file);
+    var settingsLocal = await db.get(environment.settings.nome) as Settings
+    if(settingsLocal){
+      this.settings = settingsLocal;
+    }
+    console.log(settingsLocal)
+  }
+
   async submit() {
     var inizio = new Date(this.nuovaAttivitaData.controls['inizio'].value);
     var fine = new Date(inizio.toDateString() + ' ' + this.nuovaAttivitaData.controls['fine'].value);
     this.nuovaAttivitaData.controls['fine'].setValue(fine);
-    const payload = rawToAttivita(this.nuovaAttivitaData.getRawValue())
-    console.log(payload)
+    var payload = Attivita.rawToAttivita(this.nuovaAttivitaData.getRawValue())
+    payload = Attivita.convertRaw(payload);
     try {
+      const db = new Store(environment.db.file);
+      var attivitaDaDb : Attivita[] | null = await db.get(environment.db.nome);
+      if(attivitaDaDb){
+        attivitaDaDb.push(payload);
+        attivitaDaDb = Attivita.sortAttivita(attivitaDaDb);
+      }else{
+        attivitaDaDb = [payload];
+      }
+      db.set(environment.db.nome, attivitaDaDb)
+      console.log(payload);
       await emit('nuova-attivita-submit', payload)
       console.log('Fatto')
     }catch(err){
@@ -51,40 +80,5 @@ export class NuovaAttivitaComponent implements OnInit {
     var fine = new Date(inizio.toDateString() + ' ' + this.nuovaAttivitaData.controls['fine'].value);
     return inizio < fine && inizio >= new Date();
   }
-  
-/*
-  readData(){
-    fs.readTextFile(environment.fileName).then(res => {
-      if(res){
-        var json = JSON.parse(res);
-        console.log(json)
-        var settings = json.settings;
-        json.eventi.forEach((evento: any) => {
-            this.eventi.push(jsonToObj(evento))
-        })
-      }
-    }).catch(err => {
-      console.log(err)
-    })
-  }
-
-
-  writeData(){
-    var att : any = [];
-    var ev = [new Attivita('Prova', '', '1', '1 piano', new Date(), new Date(), ''),new Attivita('Prova', '', '2', '1 piano', new Date(), new Date(), ''),new Attivita('Prova', '', '3', '1 piano', new Date(), new Date(), ''),new Attivita('Prova', '', '4', '1 piano', new Date(), new Date(), '')]
-    ev.forEach(e => {
-      att.push(attivitaToObj(e))
-    })
-    var data = {
-      settings: {
-        chunkSize: 3,
-        anticipo:30
-      },
-      eventi : att
-    }
-    let jsonConv = JSON.stringify(data)
-    fs.writeFile({contents: jsonConv, path: environment.fileName}).then(res => console.log('fatto'))
-  }
-  */
 
 }

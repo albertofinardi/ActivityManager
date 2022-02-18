@@ -1,5 +1,5 @@
 <h3 class="mb-4">Modifica attività</h3>
-<div class="table-responsive">
+<div *ngIf="eventi && eventi?.length != 0" class="table-responsive">
     <div
       id="dataTable_wrapper"
       class="dataTables_wrapper dt-bootstrap4"
@@ -81,3 +81,4 @@
       </div>
     </div>
   </div>
+<div *ngIf="!eventi || eventi.length == 0">Nessun evento programmato</div>
