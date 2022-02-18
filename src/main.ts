@@ -14,5 +14,5 @@ platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 
 listen("tauri://close-requested", event => {
-  exit(0);
+  //exit(1);
 })
