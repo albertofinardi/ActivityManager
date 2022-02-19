@@ -23,8 +23,8 @@
       ],
       "resources": [],
       "externalBin": [],
-      "copyright": "Apache license 2.0",
-      "category": "DeveloperTool",
+      "copyright": "Apache-2.0 License",
+      "category": "Productivity",
       "shortDescription": "Activity Manager & Viewer",
       "longDescription": "",
       "deb": {
