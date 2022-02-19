@@ -1,9 +1,9 @@
 [package]
 name = "app"
 version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
-license = ""
+description = "Activity Manager & Viewer"
+authors = ["Alberto Finardi"]
+license = "Apache license 2.0"
 repository = ""
 default-run = "app"
 edition = "2021"

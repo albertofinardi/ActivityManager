@@ -17,6 +17,11 @@ export const environment = {
       anticipo: 30,
       tempoPerPagina: 5
     }
+  },
+  eventi: {
+    nuova: 'nuova-attivita',
+    elimina: 'elimina-attivita',
+    settings: 'impostazioni-update'
   }
 };
 

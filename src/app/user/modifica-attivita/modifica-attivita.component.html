@@ -1,5 +1,6 @@
 <h3 class="mb-4">Modifica attività</h3>
-<div *ngIf="eventi && eventi?.length != 0" class="table-responsive">
+<div class="mb-4"><b>Modifica ed eliminazione non disponbili in questa versione</b></div>
+<div *ngIf="eventi && eventi?.length != 0" class="table-responsive mb-4">
     <div
       id="dataTable_wrapper"
       class="dataTables_wrapper dt-bootstrap4"
@@ -81,4 +82,6 @@
       </div>
     </div>
   </div>
-<div *ngIf="!eventi || eventi.length == 0">Nessun evento programmato</div>
+<div *ngIf="!eventi || eventi.length == 0" class="mb-4">Nessun evento programmato</div>
+
+<button class="btn btn-primary mb-4" (click)="deleteAll()">Elimina tutti gli eventi</button>

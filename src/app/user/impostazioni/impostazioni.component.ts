@@ -25,7 +25,7 @@ export class ImpostazioniComponent implements OnInit {
     const value = Settings.rawToSettings(this.settingsForm.getRawValue())
     await db.set(environment.settings.nome, value);
     this.initSettings();
-    await emit('settings-submit', value);
+    await emit(environment.eventi.settings, value);
   }
 
   async initSettings(){

@@ -31,7 +31,7 @@ export class NuovaAttivitaComponent implements OnInit {
   constructor() {
     registerLocaleData(localeIt, 'it-IT')
     this.initSettings();
-    listen("settings-submit", event => {
+    listen(environment.eventi.settings, event => {
       window.location.reload()
     })
   }
@@ -40,20 +40,18 @@ export class NuovaAttivitaComponent implements OnInit {
     //this.readData()
   }
 
-
-
   async initSettings(){
     const db = new Store(environment.settings.file);
     var settingsLocal = await db.get(environment.settings.nome) as Settings
     if(settingsLocal){
       this.settings = settingsLocal;
     }
-    console.log(settingsLocal)
   }
 
   async submit() {
     var inizio = new Date(this.nuovaAttivitaData.controls['inizio'].value);
     var fine = new Date(inizio.toDateString() + ' ' + this.nuovaAttivitaData.controls['fine'].value);
+    fine.setSeconds(59);
     this.nuovaAttivitaData.controls['fine'].setValue(fine);
     var payload = Attivita.rawToAttivita(this.nuovaAttivitaData.getRawValue())
     payload = Attivita.convertRaw(payload);
@@ -67,9 +65,7 @@ export class NuovaAttivitaComponent implements OnInit {
         attivitaDaDb = [payload];
       }
       db.set(environment.db.nome, attivitaDaDb)
-      console.log(payload);
-      await emit('nuova-attivita-submit', payload)
-      console.log('Fatto')
+      await emit(environment.eventi.nuova, payload)
     }catch(err){
       console.log(err)
     }

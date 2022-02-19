@@ -4,6 +4,7 @@ import localeIt from '@angular/common/locales/it';
 import { registerLocaleData } from '@angular/common';
 import { Store } from 'tauri-plugin-store-api';
 import { environment } from 'src/environments/environment';
+import { emit } from '@tauri-apps/api/event';
 
 @Component({
   selector: 'app-modifica-attivita',
@@ -17,6 +18,7 @@ export class ModificaAttivitaComponent implements OnInit {
   eventi : Attivita[] | null = [];
   constructor() { 
     registerLocaleData(localeIt, 'it-IT');
+    this.initDb()
   }
 
   ngOnInit(): void {
@@ -33,5 +35,14 @@ export class ModificaAttivitaComponent implements OnInit {
     }
     this.eventi = attivitaDaDb;
   }
+
+  async deleteAll(){
+    const db = new Store(environment.db.file);
+    await db.set(environment.db.nome, null);
+    emit(environment.eventi.elimina);
+    this.initDb();
+  }
+
+
 
 }

@@ -7,5 +7,10 @@ export const environment = {
   settings: {
     file: '.settings.dat',
     nome: 'settings'
+  },
+  eventi: {
+    nuova: 'nuova-attivita',
+    elimina: 'elimina-attivita',
+    settings: 'impostazioni-update'
   }
 };

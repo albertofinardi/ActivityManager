@@ -26,8 +26,8 @@
         <ng-template ngbSlide *ngFor="let cards of eventi">  
           <div class="card shadow py-2 mb-3" style="background-color: black;" *ngFor="let attivita of cards" [ngClass]="attivitaInCorso(attivita) ? 'border-left-success' : 'border-left-primary'">
             <div class="card-body">
-              <div class="row no-gutters align-items-center  text-white">
-                <div class="col-6 h3 mb-0 font-weight-bold">{{attivita.nome}}</div>
+              <div class="row no-gutters align-items-center text-white">
+                <div class="col-6"><div class="h3 mb-0 font-weight-bold">{{attivita.nome}}</div><div *ngIf="attivita.descrizione != ''">{{attivita.descrizione}}</div></div>
                 <div class="col-2 h3 mb-0 font-weight-bold">{{attivita.aula}}</div>
                 <div class="col-3 h3 mb-0 font-weight-bold">{{attivita.piano}}</div>
                 <div class="col-1 h3 mb-0 font-weight-bold"><div>{{attivita.inizio | date : 'HH:mm'}}</div>
