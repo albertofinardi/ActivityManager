@@ -8,8 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "tauri": "tauri",
-
-    "angular:serve" : "ng serve",
+    "angular:serve": "ng serve",
     "tauri:serve": "tauri dev",
     "tauri:build": "tauri build"
   },
