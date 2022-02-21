@@ -1,6 +1,6 @@
 {
   "package": {
-    "productName": "activity_manager",
+    "productName": "Activity Manager",
     "version": "0.1.0"
   },
   "build": {
