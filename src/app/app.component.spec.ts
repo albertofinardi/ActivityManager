@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'activity_manager_2'`, () => {
+  it(`should have as title 'activity_manager_tauri'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('activity_manager_2');
+    expect(app.title).toEqual('activity_manager_tauri');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('activity_manager_2 app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('activity_manager_tauri app is running!');
   });
 });

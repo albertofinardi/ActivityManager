@@ -3,7 +3,24 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  db: {
+    file: 'database',
+  },
+  settings: {
+    file: 'settings',
+    default: {
+      attivitaPerPagina: 3,
+      anticipo: 30,
+      tempoPerPagina: 5
+    }
+  },
+  eventi: {
+    nuova: 'nuova-attivita',
+    elimina: 'elimina-attivita',
+    settings: 'impostazioni-update'
+  }
 };
 
 /*

@@ -2,11 +2,12 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
+    "analytics": "76d55593-a8bb-4027-afc3-ea61da7c3e1c",
     "packageManager": "npm"
   },
   "newProjectRoot": "projects",
   "projects": {
-    "activity_manager_2": {
+    "activity_manager": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -20,7 +21,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/activity_manager_2",
+            "outputPath": "dist/activity_manager",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -30,7 +31,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "src/assets/font.css",
+              "src/assets/sb-admin-2.min.css"  
             ],
             "scripts": []
           },
@@ -71,10 +76,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "activity_manager_2:build:production"
+              "browserTarget": "activity_manager:build:production"
             },
             "development": {
-              "browserTarget": "activity_manager_2:build:development"
+              "browserTarget": "activity_manager:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +87,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "activity_manager_2:build"
+            "browserTarget": "activity_manager:build"
           }
         },
         "test": {
@@ -105,5 +110,5 @@
       }
     }
   },
-  "defaultProject": "activity_manager_2"
+  "defaultProject": "activity_manager"
 }

@@ -1,0 +1,94 @@
+{
+  "package": {
+    "productName": "Activity Manager",
+    "version": "0.1.0"
+  },
+  "build": {
+    "distDir": "../dist/activity_manager",
+    "devPath": "http://localhost:4200",
+    "beforeDevCommand": "npm run start",
+    "beforeBuildCommand": "npm run build"
+  },
+  "tauri": {
+    "bundle": {
+      "active": true,
+      "targets": "all",
+      "identifier": "com.tauri.dev",
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ],
+      "resources": [],
+      "externalBin": [],
+      "copyright": "Apache-2.0 License",
+      "category": "Productivity",
+      "shortDescription": "Activity Manager & Viewer",
+      "longDescription": "",
+      "deb": {
+        "depends": [],
+        "useBootstrapper": false
+      },
+      "macOS": {
+        "frameworks": [],
+        "useBootstrapper": false,
+        "exceptionDomain": "",
+        "signingIdentity": null,
+        "providerShortName": null,
+        "entitlements": null
+      },
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampUrl": ""
+      }
+    },
+    "updater": {
+      "active": true,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDNCNjNBRDJBQjQ4MUYzODQKUldTRTg0RzBLcTFqT3dHNWw0QTZGQTh2Wkp4YzN5N09XY2V4V3c1UE9MZllLNFlhNjdjYWE0a2oK"
+    },
+    "allowlist": {
+      "dialog": {
+        "all": true
+      },
+      "window": {
+        "all": true
+      },
+      "fs": {
+        "all": true,
+        "scope": ["$APP/*", "$DESKTOP/*"]
+      },
+      "path": {
+        "all": true
+      },
+      "notification": {
+        "all": true
+      }
+    },
+    "windows": [
+      {
+        "title": "Activity Manager Settings",
+        "url": "../dist/activity_manager_tauri/index.html#interface",
+        "width": 800,
+        "height": 600,
+        "resizable": true,
+        "fullscreen": false,
+        "label": "interface"
+      },
+      {
+        "title": "Activity Manager",
+        "url": "../dist/activity_manager_tauri/index.html#dashboard",
+        "width": 800,
+        "height": 600,
+        "resizable": true,
+        "fullscreen": false,
+        "label": "dashboard"
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  }
+}

@@ -1,0 +1,87 @@
+<h3 class="mb-4">Impostazioni</h3>
+
+<form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+    <!--<div class="row mb-3">
+        <label for="tempoPerPagina" class="form-label">Tempo per pagina (1 - 30 secondi)</label>
+        <div class="col">
+          <input
+            type="range"
+            class="form-range"
+            min="1"
+            max="30"
+            step="1"
+            id="tempoPerPagina"
+            formControlName="tempoPerPagina"
+          />
+        </div>
+      </div>-->
+
+    <div class="row mb-3">
+      <label for="inputDaysSpan" class="form-label">Attivita per pagina (1 - 6)</label>
+      <label for="inputDaysSpan" class="form-label"><small>Valore selezionato: {{settingsForm.getRawValue().attivitaPerPagina}}</small></label>
+      <div class="col">
+        <input
+          type="range"
+          class="form-range"
+          min="1"
+          max="6"
+          step="1"
+          id="inputDaysSpan"
+          formControlName="attivitaPerPagina"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="anticipo" class="col-sm-3 col-form-label"
+          >Anticipo visualizzazione (minuti)</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="number"
+            min="0"
+            class="form-control"
+            id="anticipo"
+            formControlName="anticipo"
+            placeholder="Minuti di anticipo"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="aule" class="col-sm-3 col-form-label"
+          >Aule</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            id="aule"
+            formControlName="aule"
+            placeholder="Lista aule (separate da virgola)"
+            aria-describedby="auleHelp"
+          />
+          <small id="auleHelp" class="form-text text-muted">Separa le aule con una virgola (,)</small>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="piani" class="col-sm-3 col-form-label"
+          >Piani</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            id="piani"
+            formControlName="piani"
+            placeholder="Lista piani (separati da virgola)"
+            aria-describedby="pianiHelp"
+          />
+          <small id="pianiHelp" class="form-text text-muted">Separa i piani con una virgola (,)</small>
+        </div>
+      </div>
+    
+    <button type="submit" class="btn btn-primary mb-4" style="margin-right: 1rem;" [disabled]="!settingsForm.valid" >Salva</button>
+
+  </form>

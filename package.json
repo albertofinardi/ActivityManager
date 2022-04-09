@@ -1,12 +1,17 @@
 {
-  "name": "activity-manager-2",
+  "name": "activity_manager",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "tauri": "tauri",
+    "update:tauri": "npm install @tauri-apps/cli@latest @tauri-apps/api@latest",
+    "update:cargo": "cd src-tauri && cargo update -p tauri",
+    "profile": "source ~/.profile",
+    "package": "npm run profile && npm run tauri build"
   },
   "private": true,
   "dependencies": {
@@ -15,9 +20,16 @@
     "@angular/compiler": "~13.3.0",
     "@angular/core": "~13.3.0",
     "@angular/forms": "~13.3.0",
+    "@angular/localize": "~13.3.0",
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
+    "@ng-bootstrap/ng-bootstrap": "^12.0.2",
+    "@popperjs/core": "^2.10.2",
+    "@tauri-apps/api": "^1.0.0-rc.3",
+    "bootstrap": "^5.1.3",
+    "bootstrap-icons": "^1.8.1",
+    "ng-bootstrap": "^1.6.3",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -26,8 +38,10 @@
     "@angular-devkit/build-angular": "~13.3.2",
     "@angular/cli": "~13.3.2",
     "@angular/compiler-cli": "~13.3.0",
+    "@tauri-apps/cli": "^1.0.0-rc.8",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
+    "@types/uuid": "^8.3.4",
     "jasmine-core": "~4.0.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",

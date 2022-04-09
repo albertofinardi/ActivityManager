@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  
+    <!-- Header -->
+    <section>
+      <div class="row mt-4">
+        <div class="col">
+          <h1 class="text-left text-white font-weight-bold">Attività</h1>
+        </div>
+        <div class="col">
+          <h1 class="text-right text-white">{{ date | date: "HH:mm" }}</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h3 class="text-left">Istituto Superiore Don Lorenzo Milani</h3>
+        </div>
+        <div class="col">
+          <h3 class="text-right font-weight-bold">{{ date | date: "EEEE d MMMM" | titlecase }}</h3>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Core -->
+    <section style="height: 70vh;" class="mt-4 mb-4 d-flex align-items-center justify-content-center">
+      <ngb-carousel *ngIf="eventi && eventi.length != 0" class="col-12" style="height: 70vh;">  
+        <ng-template ngbSlide *ngFor="let cards of eventi">  
+          <div class="card shadow py-2 mb-3" style="background-color: black;" *ngFor="let attivita of cards" [ngClass]="attivitaInCorso(attivita) ? 'border-left-success' : 'border-left-primary'">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center text-white">
+                <div class="col-6"><div class="h3 mb-0 font-weight-bold">{{attivita.nome}}</div><div *ngIf="attivita.descrizione != ''">{{attivita.descrizione}}</div></div>
+                <div class="col-2 h3 mb-0 font-weight-bold">{{attivita.aula}}</div>
+                <div class="col-3 h3 mb-0 font-weight-bold">{{attivita.piano}}</div>
+                <div class="col-1 h3 mb-0 font-weight-bold"><div>{{attivita.inizio | date : 'HH:mm'}}</div>
+                <div class="text-gray-800">{{attivita.fine | date : 'HH:mm'}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+    </ngb-carousel>
+    <h1 *ngIf="!(eventi && eventi.length != 0)" class="text-white">
+      Non ci sono attività programmate
+    </h1> 
+    </section>
+  
+  
+    <!-- Footer -->
+    <section>
+      <footer class="fixed-bottom mb-4 ml-4">
+        <p>&copy; {{date | date : 'yyyy'}} Alberto Finardi</p>
+      </footer>
+    </section>
+  
+  </div>
+  
